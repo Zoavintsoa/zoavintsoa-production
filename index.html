@@ -3,9 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="description" content="Zoavintsoa Production — Photography, Filmmaking & Visual Creation.">
+  <meta name="description" content="Zoavintsoa Production — Photography, Filmmaking & Graphic Design à Madagascar.">
   <meta name="theme-color" content="#0b0b0b">
-  <title>Zoavintsoa Production — Photography · Filmmaking · Visual Creation</title>
+  <title>Zoavintsoa Production — Photography · Filmmaking · Graphic Design</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
@@ -25,9 +25,9 @@
 <main id="top">
   <section class="hero">
     <div class="hero-copy">
-      <p class="eyebrow">PHOTOGRAPHY · FILMMAKING · VISUAL CREATION</p>
+      <p class="eyebrow">PHOTOGRAPHY · FILMMAKING · GRAPHIC DESIGN</p>
       <h1>Créer des images<br><em>qui restent.</em></h1>
-      <p class="lead">Photographe, vidéaste et créateur visuel basé à Madagascar. Je transforme les idées, les personnes et les événements en images fortes et cohérentes.</p>
+      <p class="lead">Photographe, vidéaste et designer graphique basé à Madagascar. Je transforme les idées, les personnes, les événements et les marques en contenus visuels cohérents.</p>
       <div class="actions"><a class="btn btn-light" href="#work">Voir le portfolio</a><a class="text-link" href="#contact">Parlons de votre projet →</a></div>
     </div>
     <div class="hero-image">
@@ -37,34 +37,50 @@
   </section>
 
   <section class="statement">
-    <p class="eyebrow">L'IMAGE COMME SIGNATURE</p>
-    <h2>Photographie. Film. Design.<br><span>Une seule direction visuelle.</span></h2>
+    <p class="eyebrow">UNE DIRECTION VISUELLE</p>
+    <h2>Photo. Vidéo. Design.<br><span>Une seule signature visuelle.</span></h2>
   </section>
 
   <section class="section" id="work">
-    <div class="section-head"><div><p class="eyebrow">SELECTED WORK</p><h2>Portfolio</h2></div><p>Photographie, vidéo et création visuelle pour projets personnels, marques, événements et contenus professionnels.</p></div>
+    <div class="section-head">
+      <div><p class="eyebrow">SELECTED WORK</p><h2>Portfolio</h2></div>
+      <p>Des projets en photographie, vidéo et design graphique pour particuliers, entreprises, marques, événements et contenus professionnels.</p>
+    </div>
+
+    <div class="portfolio-filters" role="tablist" aria-label="Filtrer le portfolio">
+      <button class="filter-btn active" type="button" data-filter="all">Tout</button>
+      <button class="filter-btn" type="button" data-filter="photo">Photo</button>
+      <button class="filter-btn" type="button" data-filter="video">Vidéo</button>
+      <button class="filter-btn" type="button" data-filter="design">Design</button>
+    </div>
+
+    <div class="category-strip">
+      <span>Événements</span><span>Corporate</span><span>Mariage</span><span>Portrait</span><span>Produit</span><span>Documentaire</span><span>Sport</span><span>Drone</span><span>Branding</span><span>PAO</span><span>Infographie</span>
+    </div>
+
     <div class="gallery">
-      <figure class="work-card tall"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85" alt="Portrait éditorial" loading="lazy"><figcaption><b>Portrait</b><span>Photography</span></figcaption></figure>
-      <figure class="work-card"><img src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&fit=crop&w=1000&q=85" alt="Architecture intérieure" loading="lazy"><figcaption><b>Architecture</b><span>Photography</span></figcaption></figure>
-      <figure class="work-card"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=85" alt="Production vidéo" loading="lazy"><figcaption><b>Film</b><span>Filmmaking</span></figcaption></figure>
-      <figure class="work-card wide"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1400&q=85" alt="Événement en lumière" loading="lazy"><figcaption><b>Event</b><span>Photo & Film</span></figcaption></figure>
-      <figure class="work-card"><img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1000&q=85" alt="Création pour une marque" loading="lazy"><figcaption><b>Brand</b><span>Visual Creation</span></figcaption></figure>
-      <figure class="work-card"><img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1000&q=85" alt="Concert et scène" loading="lazy"><figcaption><b>Live</b><span>Photography</span></figcaption></figure>
+      <figure class="work-card tall" data-category="photo"><img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1000&q=85" alt="Portrait éditorial" loading="lazy"><figcaption><b>Portrait</b><span>Photo</span></figcaption></figure>
+      <figure class="work-card" data-category="photo"><img src="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1000&q=85" alt="Événement" loading="lazy"><figcaption><b>Événement</b><span>Photo</span></figcaption></figure>
+      <figure class="work-card" data-category="video"><img src="https://images.unsplash.com/photo-1485846234645-a62644f84728?auto=format&fit=crop&w=1000&q=85" alt="Production vidéo" loading="lazy"><figcaption><b>Film</b><span>Vidéo</span></figcaption></figure>
+      <figure class="work-card wide" data-category="photo video"><img src="https://images.unsplash.com/photo-1511578314322-379afb476865?auto=format&fit=crop&w=1400&q=85" alt="Événement live" loading="lazy"><figcaption><b>Live</b><span>Photo & Vidéo</span></figcaption></figure>
+      <figure class="work-card" data-category="design"><img src="https://images.unsplash.com/photo-1542744094-3a31f272c490?auto=format&fit=crop&w=1000&q=85" alt="Création pour une marque" loading="lazy"><figcaption><b>Branding</b><span>Design graphique</span></figcaption></figure>
+      <figure class="work-card" data-category="design"><img src="https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1000&q=85" alt="Design graphique" loading="lazy"><figcaption><b>PAO & Infographie</b><span>Design</span></figcaption></figure>
     </div>
   </section>
 
   <section class="services section" id="services">
-    <div class="section-head"><div><p class="eyebrow">WHAT I DO</p><h2>Services</h2></div></div>
+    <div class="section-head"><div><p class="eyebrow">WHAT I DO</p><h2>Services</h2></div><p>Une chaîne de création complète, de l'idée à la livraison du contenu final.</p></div>
     <div class="service-grid">
-      <article><span>01</span><h3>Photography</h3><p>Portrait, événement, lifestyle, produit, architecture et contenu de marque.</p></article>
-      <article><span>02</span><h3>Filmmaking</h3><p>Films courts, contenus promotionnels, live, interviews et storytelling visuel.</p></article>
-      <article><span>03</span><h3>Visual Creation</h3><p>Direction visuelle, retouche, étalonnage, montage et créations graphiques.</p></article>
+      <article><span>01</span><h3>Photography</h3><p>Événements, mariage, anniversaire, baptême, corporate, portrait, produit, shooting, sport, documentaire et drone.</p></article>
+      <article><span>02</span><h3>Filmmaking</h3><p>Événementiel, corporate, mariage, interviews, documentaire, publicité, contenu social, sport, clips et drone.</p></article>
+      <article><span>03</span><h3>Graphic Design</h3><p>Identité visuelle, logo, branding, affiches, flyers, brochures, réseaux sociaux, supports publicitaires et présentations.</p></article>
+      <article><span>04</span><h3>PAO & Infographie</h3><p>Mise en page, catalogues, documents professionnels, infographies, visuels de communication et préparation des supports.</p></article>
     </div>
   </section>
 
   <section class="about section" id="about">
     <div class="about-image"><img src="https://images.unsplash.com/photo-1554048612-b6a482bc67e5?auto=format&fit=crop&w=1200&q=85" alt="Photographe au travail" loading="lazy"></div>
-    <div class="about-copy"><p class="eyebrow">ABOUT</p><h2>Une vision.<br>Un regard.<br><em>Une intention.</em></h2><p>Je développe des contenus visuels pensés de la prise de vue à la finition : photographie, vidéo, montage, étalonnage et création graphique.</p><p>Mon objectif : construire une image claire, soignée et adaptée à chaque projet.</p><a class="text-link dark" href="#contact">Travaillons ensemble →</a></div>
+    <div class="about-copy"><p class="eyebrow">ABOUT</p><h2>Une vision.<br>Un regard.<br><em>Une intention.</em></h2><p>Je développe des contenus visuels pensés de la prise de vue à la finition : photographie, vidéo, montage, étalonnage, design graphique, PAO et infographie.</p><p>Mon objectif : construire une image claire, soignée et adaptée à chaque projet.</p><a class="text-link dark" href="#contact">Travaillons ensemble →</a></div>
   </section>
 
   <section class="contact section" id="contact">
