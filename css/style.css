@@ -15,8 +15,8 @@
 @media(max-width:800px){.process-grid{grid-template-columns:1fr}.process-grid article,.process-grid article+article{padding:30px 0;border-right:0;border-bottom:1px solid var(--line);min-height:0}.process-grid article:last-child{border-bottom:0}.process-grid h3{margin-top:34px}.footer-links{margin:0 0 20px;flex-wrap:wrap}.floating-whatsapp{right:14px;bottom:14px}}
 
 .brand{gap:14px}
-.brand-logo{width:92px;height:42px;object-fit:contain;object-position:left center}
+.brand-logo{width:132px;height:54px;object-fit:contain;object-position:center;background:#f4f2ed;padding:6px 10px;border-radius:4px;box-shadow:0 2px 18px rgba(0,0,0,.28);flex-shrink:0}
 .brand-title{display:flex;flex-direction:column;font:800 13px/1.05 Manrope,sans-serif;letter-spacing:.14em}
 .brand-title small{display:block;margin-top:5px;font:500 8px/1.5 "DM Sans",sans-serif;letter-spacing:.22em;color:#777}
-.footer-brand .brand-logo{width:110px;height:48px}
-@media(max-width:520px){.brand-logo{width:78px;height:36px}.brand-title{font-size:11px}.brand-title small{font-size:7px}}
+.footer-brand .brand-logo{width:130px;height:54px}
+@media(max-width:520px){.brand-logo{width:108px;height:46px;padding:5px 8px}.brand-title{font-size:10px}.brand-title small{font-size:7px}}
