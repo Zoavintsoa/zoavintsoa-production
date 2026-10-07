@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ZOAVINTSOA — ADMIN</title>
+<style>
+:root{color-scheme:dark;--bg:#080808;--panel:#121212;--line:#292929;--text:#f4f4f4;--muted:#9a9a9a}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:Arial,sans-serif}
+.wrap{max-width:900px;margin:auto;padding:28px 18px 60px}.top{display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid var(--line);padding-bottom:18px;margin-bottom:22px}
+h1{font-size:24px;margin:0}.tag{font-size:11px;letter-spacing:.18em;color:var(--muted)}
+.panel{background:var(--panel);border:1px solid var(--line);padding:20px;margin:14px 0}
+label{display:block;font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:#bbb;margin:15px 0 7px}
+input,select,button{width:100%;font:inherit;border:1px solid var(--line);background:#0b0b0b;color:var(--text);padding:13px;border-radius:3px}
+button{cursor:pointer;background:#f4f4f4;color:#080808;font-weight:700;margin-top:16px}
+button.secondary{background:transparent;color:var(--text)}
+button:disabled{opacity:.45;cursor:not-allowed}
+.drop{border:1px dashed #555;padding:28px;text-align:center;cursor:pointer}.drop:hover{border-color:#aaa}
+#preview{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px;margin-top:15px}
+.card{position:relative;border:1px solid var(--line);background:#0b0b0b}.card img{display:block;width:100%;aspect-ratio:1;object-fit:cover}.card span{display:block;padding:8px;font-size:11px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.status{margin-top:14px;padding:12px;background:#0b0b0b;border-left:3px solid #777;font-size:13px;line-height:1.5}.ok{border-left-color:#6f6}.err{border-left-color:#d66}
+small{color:var(--muted);line-height:1.5}.grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:650px){.grid{grid-template-columns:1fr}.top{align-items:flex-start;gap:12px;flex-direction:column}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="top"><div><h1>ZOAVINTSOA / ADMIN</h1><div class="tag">PORTFOLIO MANAGER</div></div><a href="./" style="color:#fff">SITE ↗</a></div>
+
+<div class="panel">
+<h2>1. Connexion GitHub</h2>
+<small>Le token est utilisé uniquement en mémoire dans cette page. Il n'est pas enregistré dans le navigateur.</small>
+<label>Token GitHub</label>
+<input id="token" type="password" autocomplete="off" placeholder="ghp_… ou github_pat_…">
+<button id="connect">Vérifier la connexion</button>
+<div id="connection" class="status">Non connecté.</div>
+</div>
+
+<div class="panel">
+<h2>2. Ajouter des photos</h2>
+<div class="grid">
+<div><label>Projet</label><input id="project" placeholder="Ex. Mariage — Couple"></div>
+<div><label>Section</label><select id="section"><option value="frame">01 / FRAME</option><option value="motion">02 / MOTION</option><option value="identity">03 / IDENTITY</option></select></div>
+</div>
+<label>Photos</label>
+<div class="drop" id="drop">Appuyer ici pour choisir une ou plusieurs photos</div>
+<input id="files" type="file" accept="image/jpeg,image/png,image/webp,image/avif" multiple hidden>
+<div id="preview"></div>
+<button id="publish" disabled>Publier les photos sur le site</button>
+<div id="status" class="status">Aucune photo sélectionnée.</div>
+</div>
+
+<div class="panel">
+<h2>3. Important</h2>
+<small>Pour publier, le token GitHub doit avoir accès en écriture au contenu du dépôt <b>Zoavintsoa/zoavintsoa-production</b>. Utilise de préférence un fine-grained token limité à ce seul dépôt et au contenu du dépôt. Ne partage jamais ce token.</small>
+</div>
+</div>
+<script>
+const OWNER='Zoavintsoa', REPO='zoavintsoa-production', BRANCH='main';
+let token='', selected=[];
+const $=id=>document.getElementById(id);
+$('connect').onclick=async()=>{
+ token=$('token').value.trim();
+ if(!token){$('connection').textContent='Token manquant.';$('connection').className='status err';return}
+ try{
+  const r=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO,{headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json'}});
+  if(!r.ok) throw new Error('GitHub a refusé le token ('+r.status+').');
+  const d=await r.json(); $('connection').textContent='Connecté : '+d.full_name; $('connection').className='status ok';
+ }catch(e){$('connection').textContent=e.message;$('connection').className='status err';token=''}
+};
+$('drop').onclick=()=>$('files').click();
+$('files').onchange=e=>{selected=[...e.target.files];render()};
+function render(){
+ $('preview').innerHTML='';
+ selected.forEach(f=>{const c=document.createElement('div');c.className='card';const im=document.createElement('img');im.src=URL.createObjectURL(f);const s=document.createElement('span');s.textContent=f.name;c.append(im,s);$('preview').append(c)});
+ $('publish').disabled=!token||!selected.length;
+ $('status').textContent=selected.length?selected.length+' photo(s) prête(s).':'Aucune photo sélectionnée.';
+}
+function slug(s){return s.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'').slice(0,70)}
+function uniqueName(file,project,section,i){
+ const ext=(file.name.split('.').pop()||'jpg').toLowerCase().replace(/[^a-z0-9]/g,'');
+ const base=slug(project||'projet')||'projet';
+ return 'images/'+section+'/'+base+'-'+Date.now()+'-'+i+'.'+ext;
+}
+function b64(file){return new Promise((res,rej)=>{const r=new FileReader();r.onload=()=>res(r.result.split(',')[1]);r.onerror=rej;r.readAsDataURL(file)})}
+async function put(path,content,message){
+ const r=await fetch('https://api.github.com/repos/'+OWNER+'/'+REPO+'/contents/'+path,{
+  method:'PUT',headers:{Authorization:'Bearer '+token,Accept:'application/vnd.github+json','Content-Type':'application/json'},
+  body:JSON.stringify({message,content,branch:BRANCH})
+ });
+ if(!r.ok){let t='Erreur GitHub '+r.status;try{const d=await r.json();if(d.message)t+=' — '+d.message}catch{}throw new Error(t)}
+ return r.json()
+}
+$('publish').onclick=async()=>{
+ if(!token||!selected.length)return;
+ $('publish').disabled=true;$('status').className='status';$('status').textContent='Publication en cours…';
+ try{
+  const project=$('project').value.trim(),section=$('section').value;
+  for(let i=0;i<selected.length;i++){
+   const f=selected[i];$('status').textContent='Publication '+(i+1)+'/'+selected.length+' : '+f.name;
+   await put(uniqueName(f,project,section,i),await b64(f),'Portfolio : ajout photo '+f.name);
+  }
+  $('status').className='status ok';$('status').textContent='Publication terminée. GitHub Pages peut prendre quelques instants pour actualiser le site.';
+  selected=[];$('files').value='';$('preview').innerHTML='';
+ }catch(e){$('status').className='status err';$('status').textContent=e.message}
+ $('publish').disabled=!token||!selected.length;
+};
+</script>
+</body>
+</html>
