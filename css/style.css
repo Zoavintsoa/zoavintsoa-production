@@ -33,3 +33,11 @@
 .footer-credit p{margin:0}
 .footer-credit small{font-size:7px;letter-spacing:.08em;color:#555;max-width:520px}
 @media(max-width:800px){.footer-credit{align-items:flex-start;text-align:left}}
+
+.motion-videos{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.motion-video{margin:0}
+.video-frame{position:relative;aspect-ratio:16/9;background:#0b0b0b;overflow:hidden}
+.video-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.video-meta{display:flex;justify-content:space-between;padding:14px 2px 0;font-size:9px;letter-spacing:.18em;color:#777}
+.video-meta strong{color:#111;font-weight:600}
+@media(max-width:800px){.motion-videos{grid-template-columns:1fr}.video-meta{padding-top:10px}}
