@@ -28,3 +28,8 @@
   .identity-meta{border-left:0;border-top:1px solid var(--line);min-height:30vh}
   .portrait-placeholder:before{width:75vw;height:75vw;right:-22vw;top:15vw}
 }
+
+.footer-credit{display:flex;flex-direction:column;align-items:flex-end;gap:8px;text-align:right}
+.footer-credit p{margin:0}
+.footer-credit small{font-size:7px;letter-spacing:.08em;color:#555;max-width:520px}
+@media(max-width:800px){.footer-credit{align-items:flex-start;text-align:left}}
